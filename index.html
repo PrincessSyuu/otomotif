@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Otoproject Garage Bekasi — Aksesori Mobil Premium</title>
+  <link rel="icon" href="data:,">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#9D1A10',
+            brand: '#9D1A10',
+            dark: '#0F0F0F',
+            bg: '#F5F5F5'
+          },
+          fontFamily: {
+            sans: ['Manrope', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    ::selection { background: #9D1A10; color: #fff; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0F0F0F; }
+    ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #9D1A10; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { opacity: 0; animation: fadeUp 0.8s ease-out forwards; }
+    .delay-100 { animation-delay: 100ms; }
+    .delay-200 { animation-delay: 200ms; }
+    .delay-300 { animation-delay: 300ms; }
+    .delay-400 { animation-delay: 400ms; }
+    .delay-500 { animation-delay: 500ms; }
+    .delay-600 { animation-delay: 600ms; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    .float { animation: float 4s ease-in-out infinite; }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 15px rgba(157,26,16,0.3); }
+      50% { box-shadow: 0 0 30px rgba(157,26,16,0.6); }
+    }
+    .pulse-glow { animation: pulse-glow 2.5s ease-in-out infinite; }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .marquee-content { animation: marquee 30s linear infinite; }
+
+    @keyframes countUp {
+      from { opacity: 0; transform: scale(0.5); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .noise-overlay::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+
+    .hero-gradient {
+      background: linear-gradient(135deg, #0F0F0F 0%, #1a0a09 50%, #0F0F0F 100%);
+    }
+
+    .review-card:hover .review-quote {
+      color: #9D1A10;
+    }
+
+    .service-card:hover .service-icon {
+      background: #9D1A10;
+      color: #fff;
+      transform: rotateY(180deg);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+      filter: grayscale(0);
+    }
+
+    /* Toast notification */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      padding: 1rem 1.5rem;
+      border-radius: 0.5rem;
+      z-index: 9999;
+      transform: translateX(120%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .toast.show {
+      transform: translateX(0);
+    }
+  </style>
+</head>
+<body class="bg-dark font-sans text-white antialiased overflow-x-hidden">
+
+  <!-- ===================== NAVBAR ===================== -->
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 py-5 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#hero" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 bg-brand rounded-lg flex items-center justify-center group-hover:rotate-12 transition-transform duration-500">
+          <iconify-icon icon="mdi:car-wrench" class="text-white text-xl"></iconify-icon>
+        </div>
+        <div>
+          <span class="text-white font-bold text-lg tracking-tight leading-none">OTOPROJECT</span>
+          <span class="block text-[10px] font-medium tracking-[0.25em] text-neutral-400 uppercase">Garage Bekasi</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#tentang" class="text-xs font-medium uppercase tracking-widest text-neutral-400 hover:text-white transition-colors duration-300">Tentang</a>
+        <a href="#layanan" class="text-xs font-medium uppercase tracking-widest text-neutral-400 hover:text-white transition-colors duration-300">Layanan</a>
+        <a href="#fasilitas" class="text-xs font-medium uppercase tracking-widest text-neutral-400 hover:text-white transition-colors duration-300">Fasilitas</a>
+        <a href="#galeri" class="text-xs font-medium uppercase tracking-widest text-neutral-400 hover:text-white transition-colors duration-300">Galeri</a>
+        <a href="#ulasan" class="text-xs font-medium uppercase tracking-widest text-neutral-400 hover:text-white transition-colors duration-300">Ulasan</a>
+        <a href="#lokasi" class="text-xs font-medium uppercase tracking-widest text-neutral-400 hover:text-white transition-colors duration-300">Lokasi</a>
+        <a href="https://wa.me/6281112531327" target="_blank" class="ml-4 px-6 py-3 bg-brand text-white text-xs font-bold uppercase tracking-widest rounded-sm hover:bg-white hover:text-dark transition-all duration-300">
+          Hubungi Kami
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger -->
+      <button id="menuBtn" class="md:hidden text-white p-2" aria-label="Menu">
+        <iconify-icon icon="mdi:menu" class="text-2xl" id="menuIcon"></iconify-icon>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="md:hidden hidden bg-dark/95 backdrop-blur-xl border-t border-white/5">
+      <div class="max-w-7xl mx-auto px-6 py-8 flex flex-col gap-6">
+        <a href="#tentang" class="mobile-link text-sm font-medium uppercase tracking-widest text-neutral-400 hover:text-white transition-colors">Tentang</a>
+        <a href="#layanan" class="mobile-link text-sm font-medium uppercase tracking-widest text-neutral-400 hover:text-white transition-colors">Layanan</a>
+        <a href="#fasilitas" class="mobile-link text-sm font-medium uppercase tracking-widest text-neutral-400 hover:text-white transition-colors">Fasilitas</a>
+        <a href="#galeri" class="mobile-link text-sm font-medium uppercase tracking-widest text-neutral-400 hover:text-white transition-colors">Galeri</a>
+        <a href="#ulasan" class="mobile-link text-sm font-medium uppercase tracking-widest text-neutral-400 hover:text-white transition-colors">Ulasan</a>
+        <a href="#lokasi" class="mobile-link text-sm font-medium uppercase tracking-widest text-neutral-400 hover:text-white transition-colors">Lokasi</a>
+        <a href="https://wa.me/6281112531327" target="_blank" class="mt-4 px-6 py-3 bg-brand text-white text-xs font-bold uppercase tracking-widest rounded-sm text-center hover:bg-white hover:text-dark transition-all duration-300">
+          Hubungi Kami
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <section id="hero" class="relative hero-gradient noise-overlay min-h-screen flex items-center overflow-hidden">
+    <!-- Decorative elements -->
+    <div class="absolute top-20 right-20 w-96 h-96 bg-brand/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-20 left-10 w-72 h-72 bg-brand/5 rounded-full blur-3xl"></div>
+    <div class="absolute top-1/3 left-1/4 w-2 h-2 bg-brand/40 rounded-full float"></div>
+    <div class="absolute top-2/3 right-1/3 w-3 h-3 bg-brand/30 rounded-full float" style="animation-delay:1s"></div>
+    <div class="absolute top-1/2 right-1/4 w-1.5 h-1.5 bg-white/20 rounded-full float" style="animation-delay:2s"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pt-32 pb-20 w-full">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        <!-- Left Content -->
+        <div class="lg:col-span-7 space-y-8">
+          <!-- Rating Badge -->
+          <div class="fade-up inline-flex items-center gap-3 px-4 py-2 border border-white/10 rounded-full bg-white/5 backdrop-blur-sm">
+            <div class="flex items-center gap-1">
+              <iconify-icon icon="mdi:star" class="text-yellow-400 text-sm"></iconify-icon>
+              <iconify-icon icon="mdi:star" class="text-yellow-400 text-sm"></iconify-icon>
+              <iconify-icon icon="mdi:star" class="text-yellow-400 text-sm"></iconify-icon>
+              <iconify-icon icon="mdi:star" class="text-yellow-400 text-sm"></iconify-icon>
+              <iconify-icon icon="mdi:star" class="text-yellow-400 text-sm"></iconify-icon>
+            </div>
+            <span class="text-xs font-bold text-white">5.0</span>
+            <span class="text-xs text-neutral-400">•</span>
+            <span class="text-xs text-neutral-400">1.416 Ulasan</span>
+            <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+          </div>
+
+          <!-- Heading -->
+          <h1 class="fade-up delay-100 text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tighter">
+            <span class="text-white">Oto</span><span class="text-brand">project</span>
+            <br>
+            <span class="text-white">Garage</span>
+            <br>
+            <span class="font-light text-neutral-500 text-4xl md:text-5xl lg:text-6xl">Bekasi</span>
+          </h1>
+
+          <!-- Description -->
+          <p class="fade-up delay-200 text-lg font-light text-neutral-400 leading-relaxed max-w-xl">
+            Bengkel aksesori mobil terpercaya dengan produk lengkap, pemasangan rapih & cepat, dan ruang tunggu premium. Upgrade mobil Anda bersama kami.
+          </p>
+
+          <!-- CTA Buttons -->
+          <div class="fade-up delay-300 flex flex-wrap gap-4">
+            <a href="https://wa.me/6281112531327?text=Halo%20Otoproject%20Garage%2C%20saya%20ingin%20konsultasi%aakesoris%20mobil" target="_blank"
+               class="group inline-flex items-center gap-3 px-8 py-4 bg-brand text-white text-sm font-bold uppercase tracking-widest rounded-sm hover:bg-white hover:text-dark transition-all duration-300 pulse-glow">
+              <iconify-icon icon="mdi:whatsapp" class="text-lg"></iconify-icon>
+              WhatsApp Kami
+              <iconify-icon icon="mdi:arrow-right" class="text-base group-hover:translate-x-1 transition-transform duration-300"></iconify-icon>
+            </a>
+            <a href="#layanan" class="inline-flex items-center gap-3 px-8 py-4 border border-white/20 text-white text-sm font-bold uppercase tracking-widest rounded-sm hover:bg-white/5 transition-all duration-300">
+              Lihat Layanan
+            </a>
+          </div>
+
+          <!-- Stats -->
+          <div class="fade-up delay-400 flex flex-wrap gap-8 pt-4">
+            <div>
+              <div class="text-3xl font-bold text-white">1.416<span class="text-brand">+</span></div>
+              <div class="text-xs text-neutral-500 uppercase tracking-widest mt-1">Ulasan Puas</div>
+            </div>
+            <div class="w-px bg-white/10"></div>
+            <div>
+              <div class="text-3xl font-bold text-white">5.0</div>
+              <div class="text-xs text-neutral-500 uppercase tracking-widest mt-1">Rating Google</div>
+            </div>
+            <div class="w-px bg-white/10"></div>
+            <div>
+              <div class="text-3xl font-bold text-white">100<span class="text-brand">+</span></div>
+              <div class="text-xs text-neutral-500 uppercase tracking-widest mt-1">Produk Aksesori</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Image -->
+        <div class="lg:col-span-5 relative fade-up delay-300">
+          <div class="relative h-[55vh] lg:h-[70vh] rounded-lg overflow-hidden border border-white/10">
+            <img src="https://picsum.photos/seed/otoproject-garage/800/1100.jpg" alt="Otoproject Garage" class="w-full h-full object-cover grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:scale-105 transition-all duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-transparent"></div>
+            <!-- Floating badge on image -->
+            <div class="absolute bottom-6 left-6 right-6 bg-dark/80 backdrop-blur-md rounded-lg p-4 border border-white/10">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-brand/20 rounded-full flex items-center justify-center">
+                  <iconify-icon icon="mdi:clock-outline" class="text-brand"></iconify-icon>
+                </div>
+                <div>
+                  <p class="text-xs text-neutral-400">Jam Buka</p>
+                  <p class="text-sm font-semibold text-white">Setiap Hari 09.30 - 18.00</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Decorative corner -->
+          <div class="absolute -top-3 -right-3 w-16 h-16 border-t-2 border-r-2 border-brand/50 rounded-tr-lg"></div>
+          <div class="absolute -bottom-3 -left-3 w-16 h-16 border-b-2 border-l-2 border-brand/50 rounded-bl-lg"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 fade-up delay-600">
+      <span class="text-[10px] uppercase tracking-[0.3em] text-neutral-500">Scroll</span>
+      <div class="w-px h-8 bg-gradient-to-b from-brand to-transparent animate-pulse"></div>
+    </div>
+  </section>
+
+  <!-- ===================== MARQUEE BRANDS ===================== -->
+  <section class="bg-dark border-y border-white/5 py-5 overflow-hidden">
+    <div class="flex whitespace-nowrap">
+      <div class="marquee-content flex items-center gap-12 text-neutral-600 text-xs uppercase tracking-[0.3em] font-medium">
+        <span>Toyota</span><span class="text-brand">•</span>
+        <span>Honda</span><span class="text-brand">•</span>
+        <span>Daihatsu</span><span class="text-brand">•</span>
+        <span>Mitsubishi</span><span class="text-brand">•</span>
+        <span>Suzuki</span><span class="text-brand">•</span>
+        <span>Nissan</span><span class="text-brand">•</span>
+        <span>Mazda</span><span class="text-brand">•</span>
+        <span>Kia</span><span class="text-brand">•</span>
+        <span>Hyundai</span><span class="text-brand">•</span>
+        <span>Wuling</span><span class="text-brand">•</span>
+        <span>BMW</span><span class="text-brand">•</span>
+        <span>Mercedes-Benz</span><span class="text-brand">•</span>
+        <!-- Duplicate for seamless loop -->
+        <span>Toyota</span><span class="text-brand">•</span>
+        <span>Honda</span><span class="text-brand">•</span>
+        <span>Daihatsu</span><span class="text-brand">•</span>
+        <span>Mitsubishi</span><span class="text-brand">•</span>
+        <span>Suzuki</span><span class="text-brand">•</span>
+        <span>Nissan</span><span class="text-brand">•</span>
+        <span>Mazda</span><span class="text-brand">•</span>
+        <span>Kia</span><span class="text-brand">•</span>
+        <span>Hyundai</span><span class="text-brand">•</span>
+        <span>Wuling</span><span class="text-brand">•</span>
+        <span>BMW</span><span class="text-brand">•</span>
+        <span>Mercedes-Benz</span><span class="text-brand">•</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TENTANG ===================== -->
+  <section id="tentang" class="relative bg-dark grid-bg py-24 md:py-32 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <!-- Left Image -->
+        <div class="relative">
+          <div class="relative h-[55vh] rounded-lg overflow-hidden border border-white/10">
+            <img src="https://picsum.photos/seed/workshop-interior/800/900.jpg" alt="Workshop Interior" class="w-full h-full object-cover opacity-80 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-dark/60 to-transparent"></div>
+          </div>
+          <!-- Floating stat card -->
+          <div class="absolute -bottom-6 -right-6 md:right-8 bg-brand rounded-lg p-6 shadow-2xl">
+            <div class="text-4xl font-bold text-white">5.0</div>
+            <div class="flex gap-1 mt-1">
+              <iconify-icon icon="mdi:star" class="text-yellow-300"></iconify-icon>
+              <iconify-icon icon="mdi:star" class="text-yellow-300"></iconify-icon>
+              <iconify-icon icon="mdi:star" class="text-yellow-300"></iconify-icon>
+              <iconify-icon icon="mdi:star" class="text-yellow-300"></iconify-icon>
+              <iconify-icon icon="mdi:star" class="text-yellow-300"></iconify-icon>
+            </div>
+            <div class="text-xs text-white/70 mt-1">Google Rating</div>
+          </div>
+        </div>
+
+        <!-- Right Content -->
+        <div class="space-y-8">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-[0.3em] text-brand">Tentang Kami</span>
+            <h2 class="text-4xl md:text-5xl font-bold tracking-tight mt-4 leading-tight">
+              Bengkel Aksesori<br>
+              <span class="text-neutral-500">Terpercaya di Bekasi</span>
+            </h2>
+          </div>
+
+          <p class="text-lg font-light text-neutral-400 leading-relaxed">
+            Otoproject Garage Bekasi adalah bengkel aksesori mobil one-stop solution dengan produk lengkap untuk berbagai merek mobil. Kami mengutamakan kualitas pemasangan yang rapih, cepat, dan standar pabrikan (plug & play).
+          </p>
+
+          <div class="grid grid-cols-2 gap-6">
+            <div class="p-5 border border-white/10 rounded-lg hover:border-brand/50 transition-colors duration-300">
+              <iconify-icon icon="mdi:shield-check" class="text-brand text-2xl mb-3"></iconify-icon>
+              <h4 class="text-sm font-semibold text-white">Garansi Produk</h4>
+              <p class="text-xs text-neutral-500 mt-1">Semua produk bergaransi resmi</p>
+            </div>
+            <div class="p-5 border border-white/10 rounded-lg hover:border-brand/50 transition-colors duration-300">
+              <iconify-icon icon="mdi:wrench-check" class="text-brand text-2xl mb-3"></iconify-icon>
+              <h4 class="text-sm font-semibold text-white">Mekanik Berpengalaman</h4>
+              <p class="text-xs text-neutral-500 mt-1">Teknisi terlatih & profesional</p>
+            </div>
+            <div class="p-5 border border-white/10 rounded-lg hover:border-brand/50 transition-colors duration-300">
+              <iconify-icon icon="mdi:lightning-bolt" class="text-brand text-2xl mb-3"></iconify-icon>
+              <h4 class="text-sm font-semibold text-white">Pemasangan Cepat</h4>
+              <p class="text-xs text-neutral-500 mt-1">Proses rapih & efisien</p>
+            </div>
+            <div class="p-5 border border-white/10 rounded-lg hover:border-brand/50 transition-colors duration-300">
+              <iconify-icon icon="mdi:power-plug" class="text-brand text-2xl mb-3"></iconify-icon>
+              <h4 class="text-sm font-semibold text-white">Plug & Play</h4>
+              <p class="text-xs text-neutral-500 mt-1">Standar pabrikan, tidak merusak</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== LAYANAN ===================== -->
+  <section id="layanan" class="bg-[#0A0A0A] py-24 md:py-32 relative overflow-hidden">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-brand/5 rounded-full blur-3xl"></div>
+
+    <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-[0.3em] text-brand">Layanan Kami</span>
+        <h2 class="text-4xl md:text-5xl font-bold tracking-tight mt-4">
+          Solusi Aksesori<br>
+          <span class="text-neutral-500">Lengkap & Terpadu</span>
+        </h2>
+        <p class="text-lg font-light text-neutral-400 leading-relaxed mt-6">
+          Dari audio, lampu, body kit, hingga keselamatan — semua kebutuhan aksesori mobil Anda tersedia di sini.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Service Cards -->
+        <div class="service-card group p-8 bg-dark border border-white/5 rounded-lg hover:border-brand/30 transition-all duration-500 hover:-translate-y-1">
+          <div class="service-icon w-14 h-14 border border-white/10 rounded-lg flex items-center justify-center mb-6 transition-all duration-500">
+            <iconify-icon icon="mdi:speaker" class="text-brand group-hover:text-white text-2xl transition-colors duration-500"></iconify-icon>
+          </div>
+          <h3 class="text-xl font-semibold text-white mb-3">Audio & Multimedia</h3>
+          <p class="text-sm text-neutral-400 leading-relaxed">Head unit, speaker, subwoofer, amplifier, dan sistem multimedia berkualitas tinggi untuk pengalaman berkendara yang lebih seru.</p>
+        </div>
+
+        <div class="service-card group p-8 bg-dark border border-white/5 rounded-lg hover:border-brand/30 transition-all duration-500 hover:-translate-y-1">
+          <div class="service-icon w-14 h-14 border border-white/10 rounded-lg flex items-center justify-center mb-6 transition-all duration-500">
+            <iconify-icon icon="mdi:car-light-high" class="text-brand group-hover:text-white text-2xl transition-colors duration-500"></iconify-icon>
+          </div>
+          <h3 class="text-xl font-semibold text-white mb-3">Lampu & LED</h3>
+          <p class="text-sm text-neutral-400 leading-relaxed">Upgrade lampu utama, fog lamp, DRL, tail lamp, dan interior lamp dengan teknologi LED terbaru yang lebih terang dan hemat energi.</p>
+        </div>
+
+        <div class="service-card group p-8 bg-dark border border-white/5 rounded-lg hover:border-brand/30 transition-all duration-500 hover:-translate-y-1">
+          <div class="service-icon w-14 h-14 border border-white/10 rounded-lg flex items-center justify-center mb-6 transition-all duration-500">
+            <iconify-icon icon="mdi:car-side" class="text-brand group-hover:text-white text-2xl transition-colors duration-500"></iconify-icon>
+          </div>
+          <h3 class="text-xl font-semibold text-white mb-3">Body Kit & Eksterior</h3>
+          <p class="text-sm text-neutral-400 leading-relaxed">Body kit, grille, spoiler, side skirt, mirror cover, dan aksesoris eksterior untuk tampilan mobil yang lebih sporty dan elegan.</p>
+        </div>
+
+        <div class="service-card group p-8 bg-dark border border-white/5 rounded-lg hover:border-brand/30 transition-all duration-500 hover:-translate-y-1">
+          <div class="service-icon w-14 h-14 border border-white/10 rounded-lg flex items-center justify-center mb-6 transition-all duration-500">
+            <iconify-icon icon="mdi:car-seat" class="text-brand group-hover:text-white text-2xl transition-colors duration-500"></iconify-icon>
+          </div>
+          <h3 class="text-xl font-semibold text-white mb-3">Interior & Kenyamanan</h3>
+          <p class="text-sm text-neutral-400 leading-relaxed">Seat cover, dashboard trim, ambient light, karpet, dan aksesoris interior untuk kabin yang lebih mewah dan nyaman.</p>
+        </div>
+
+        <div class="service-card group p-8 bg-dark border border-white/5 rounded-lg hover:border-brand/30 transition-all duration-500 hover:-translate-y-1">
+          <div class="service-icon w-14 h-14 border border-white/10 rounded-lg flex items-center justify-center mb-6 transition-all duration-500">
+            <iconify-icon icon="mdi:shield-car" class="text-brand group-hover:text-white text-2xl transition-colors duration-500"></iconify-icon>
+          </div>
+          <h3 class="text-xl font-semibold text-white mb-3">Keamanan & Safety</h3>
+          <p class="text-sm text-neutral-400 leading-relaxed">Dashcam, alarm, GPS tracker, kamera belakang, sensor parkir, dan sistem keamanan untuk perlindungan mobil Anda.</p>
+        </div>
+
+        <div class="service-card group p-8 bg-dark border border-white/5 rounded-lg hover:border-brand/30 transition-all duration-500 hover:-translate-y-1">
+          <div class="service-icon w-14 h-14 border border-white/10 rounded-lg flex items-center justify-center mb-6 transition-all duration-500">
+            <iconify-icon icon="mdi:car-tire-alert" class="text-brand group-hover:text-white text-2xl transition-colors duration-500"></iconify-icon>
+          </div>
+          <h3 class="text-xl font-semibold text-white mb-3">Ban & Velg</h3>
+          <p class="text-sm text-neutral-400 leading-relaxed">Pilihan velg aftermarket, ban premium, TPMS, dan aksesoris roda untuk performa dan penampilan yang lebih baik.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FASILITAS ===================== -->
+  <section id="fasilitas" class="bg-dark py-24 md:py-32 relative grid-bg overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-[0.3em] text-brand">Fasilitas</span>
+        <h2 class="text-4xl md:text-5xl font-bold tracking-tight mt-4">
+          Ruang Tunggu<br>
+          <span class="text-neutral-500">Premium & Nyaman</span>
+        </h2>
+        <p class="text-lg font-light text-neutral-400 leading-relaxed mt-6">
+          Di lantai 3, kami menyediakan ruang tunggu yang lengkap dan nyaman. Anda bisa bersantai sambil menunggu mobil dipasang aksesori.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="group relative p-6 bg-[#151515] border border-white/5 rounded-lg text-center hover:border-brand/30 transition-all duration-500 hover:-translate-y-1">
+          <div class="w-16 h-16 mx-auto bg-brand/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-brand/20 transition-colors duration-300">
+            <iconify-icon icon="mdi:air-conditioner" class="text-brand text-3xl"></iconify-icon>
+          </div>
+          <h4 class="font-semibold text-white mb-1">AC & Ruangan Adem</h4>
+          <p class="text-xs text-neutral-500">Ruang tunggu dingin dan nyaman</p>
+        </div>
+
+        <div class="group relative p-6 bg-[#151515] border border-white/5 rounded-lg text-center hover:border-brand/30 transition-all duration-500 hover:-translate-y-1">
+          <div class="w-16 h-16 mx-auto bg-brand/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-brand/20 transition-colors duration-300">
+            <iconify-icon icon="mdi:wifi" class="text-brand text-3xl"></iconify-icon>
+          </div>
+          <h4 class="font-semibold text-white mb-1">Wi-Fi Gratis</h4>
+          <p class="text-xs text-neutral-500">Internet cepat tanpa batas</p>
+        </div>
+
+        <div class="group relative p-6 bg-[#151515] border border-white/5 rounded-lg text-center hover:border-brand/30 transition-all duration-500 hover:-translate-y-1">
+          <div class="w-16 h-16 mx-auto bg-brand/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-brand/20 transition-colors duration-300">
+            <iconify-icon icon="mdi:television-classic" class="text-brand text-3xl"></iconify-icon>
+          </div>
+          <h4 class="font-semibold text-white mb-1">TV Kabel</h4>
+          <p class="text-xs text-neutral-500">Hiburan while you wait</p>
+        </div>
+
+        <div class="group relative p-6 bg-[#151515] border border-white/5 rounded-lg text-center hover:border-brand/30 transition-all duration-500 hover:-translate-y-1">
+          <div class="w-16 h-16 mx-auto bg-brand/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-brand/20 transition-colors duration-300">
+            <iconify-icon icon="mdi:coffee" class="text-brand text-3xl"></iconify-icon>
+          </div>
+          <h4 class="font-semibold text-white mb-1">Snack & Kopi</h4>
+          <p class="text-xs text-neutral-500">Minuman & makanan ringan gratis</p>
+        </div>
+
+        <div class="group relative p-6 bg-[#151515] border border-white/5 rounded-lg text-center hover:border-brand/30 transition-all duration-500 hover:-translate-y-1">
+          <div class="w-16 h-16 mx-auto bg-brand/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-brand/20 transition-colors duration-300">
+            <iconify-icon icon="mdi:mosque" class="text-brand text-3xl"></iconify-icon>
+          </div>
+          <h4 class="font-semibold text-white mb-1">Mushola</h4>
+          <p class="text-xs text-neutral-500">Tempat ibadah bersih & nyaman</p>
+        </div>
+
+        <div class="group relative p-6 bg-[#151515] border border-white/5 rounded-lg text-center hover:border-brand/30 transition-all duration-500 hover:-translate-y-1">
+          <div class="w-16 h-16 mx-auto bg-brand/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-brand/20 transition-colors duration-300">
+            <iconify-icon icon="mdi:human-male-female" class="text-brand text-3xl"></iconify-icon>
+          </div>
+          <h4 class="font-semibold text-white mb-1">Toilet Bersih</h4>
+          <p class="text-xs text-neutral-500">Sanitasi terjaga dan harum</p>
+        </div>
+
+        <div class="group relative p-6 bg-[#151515] border border-white/5 rounded-lg text-center hover:border-brand/30 transition-all duration-500 hover:-translate-y-1">
+          <div class="w-16 h-16 mx-auto bg-brand/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-brand/20 transition-colors duration-300">
+            <iconify-icon icon="mdi:sofa" class="text-brand text-3xl"></iconify-icon>
+          </div>
+          <h4 class="font-semibold text-white mb-1">Sofa Nyaman</h4>
+          <p class="text-xs text-neutral-500">Ruang tunggu cozy & estetik</p>
+        </div>
+
+        <div class="group relative p-6 bg-[#151515] border border-white/5 rounded-lg text-center hover:border-brand/30 transition-all duration-500 hover:-translate-y-1">
+          <div class="w-16 h-16 mx-auto bg-brand/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-brand/20 transition-colors duration-300">
+            <iconify-icon icon="mdi:car-parking-lights" class="text-brand text-3xl"></iconify-icon>
+          </div>
+          <h4 class="font-semibold text-white mb-1">Area Parkir Luas</h4>
+          <p class="text-xs text-neutral-500">Tempat parkir memadai</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== GALERI ===================== -->
+  <section id="galeri" class="bg-[#0A0A0A] py-24 md:py-32 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-12 gap-6">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-[0.3em] text-brand">Galeri</span>
+          <h2 class="text-4xl md:text-5xl font-bold tracking-tight mt-4">
+            Hasil Kerja<br>
+            <span class="text-neutral-500">Kami</span>
+          </h2>
+        </div>
+        <p class="text-sm text-neutral-400 max-w-md font-light leading-relaxed">
+          Setiap pemasangan dilakukan dengan presisi dan kerapihan tinggi. Berikut beberapa hasil karya tim Otoproject Garage.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="gallery-item relative aspect-square overflow-hidden rounded-lg border border-white/5 group cursor-pointer" onclick="openLightbox(this)">
+          <img src="https://picsum.photos/seed/car-audio-install/600/600.jpg" alt="Audio Install" class="w-full h-full object-cover grayscale opacity-70 transition-all duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <p class="text-xs font-bold uppercase tracking-widest text-white">Audio System</p>
+            <p class="text-[10px] text-neutral-400 mt-1">Toyota Raize 2024</p>
+          </div>
+        </div>
+
+        <div class="gallery-item relative aspect-square overflow-hidden rounded-lg border border-white/5 group cursor-pointer" onclick="openLightbox(this)">
+          <img src="https://picsum.photos/seed/car-led-lights/600/600.jpg" alt="LED Lights" class="w-full h-full object-cover grayscale opacity-70 transition-all duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <p class="text-xs font-bold uppercase tracking-widest text-white">LED Upgrade</p>
+            <p class="text-[10px] text-neutral-400 mt-1">Honda HR-V 2024</p>
+          </div>
+        </div>
+
+        <div class="gallery-item relative aspect-square overflow-hidden rounded-lg border border-white/5 group cursor-pointer" onclick="openLightbox(this)">
+          <img src="https://picsum.photos/seed/car-bodykit/600/600.jpg" alt="Body Kit" class="w-full h-full object-cover grayscale opacity-70 transition-all duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <p class="text-xs font-bold uppercase tracking-widest text-white">Body Kit</p>
+            <p class="text-[10px] text-neutral-400 mt-1">Daihatsu Rocky 2023</p>
+          </div>
+        </div>
+
+        <div class="gallery-item relative aspect-square overflow-hidden rounded-lg border border-white/5 group cursor-pointer" onclick="openLightbox(this)">
+          <img src="https://picsum.photos/seed/car-dashcam/600/600.jpg" alt="Dashcam" class="w-full h-full object-cover grayscale opacity-70 transition-all duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <p class="text-xs font-bold uppercase tracking-widest text-white">Dashcam & Safety</p>
+            <p class="text-[10px] text-neutral-400 mt-1">Mitsubishi Xpander 2024</p>
+          </div>
+        </div>
+
+        <div class="gallery-item relative aspect-square overflow-hidden rounded-lg border border-white/5 group cursor-pointer" onclick="openLightbox(this)">
+          <img src="https://picsum.photos/seed/car-interior-ambient/600/600.jpg" alt="Ambient Light" class="w-full h-full object-cover grayscale opacity-70 transition-all duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <p class="text-xs font-bold uppercase tracking-widest text-white">Ambient Light</p>
+            <p class="text-[10px] text-neutral-400 mt-1">Toyota Avanza 2024</p>
+          </div>
+        </div>
+
+        <div class="gallery-item relative aspect-square overflow-hidden rounded-lg border border-white/5 group cursor-pointer" onclick="openLightbox(this)">
+          <img src="https://picsum.photos/seed/car-seat-cover/600/600.jpg" alt="Seat Cover" class="w-full h-full object-cover grayscale opacity-70 transition-all duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <p class="text-xs font-bold uppercase tracking-widest text-white">Seat Cover</p>
+            <p class="text-[10px] text-neutral-400 mt-1">Suzuki Ertiga 2023</p>
+          </div>
+        </div>
+
+        <div class="gallery-item relative aspect-square overflow-hidden rounded-lg border border-white/5 group cursor-pointer" onclick="openLightbox(this)">
+          <img src="https://picsum.photos/seed/car-wheels-rim/600/600.jpg" alt="Velg" class="w-full h-full object-cover grayscale opacity-70 transition-all duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <p class="text-xs font-bold uppercase tracking-widest text-white">Velg & Ban</p>
+            <p class="text-[10px] text-neutral-400 mt-1">Honda Brio RS 2024</p>
+          </div>
+        </div>
+
+        <div class="gallery-item relative aspect-square overflow-hidden rounded-lg border border-white/5 group cursor-pointer" onclick="openLightbox(this)">
+          <img src="https://picsum.photos/seed/car-workshop-wide/600/600.jpg" alt="Workshop" class="w-full h-full object-cover grayscale opacity-70 transition-all duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <p class="text-xs font-bold uppercase tracking-widest text-white">Workshop</p>
+            <p class="text-[10px] text-neutral-400 mt-1">Otoproject Garage</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="fixed inset-0 z-[100] bg-dark/95 backdrop-blur-xl hidden items-center justify-center p-6 cursor-pointer" onclick="closeLightbox()">
+    <button class="absolute top-6 right-6 text-white/50 hover:text-white transition-colors" onclick="closeLightbox()">
+      <iconify-icon icon="mdi:close" class="text-3xl"></iconify-icon>
+    </button>
+    <img id="lightboxImg" src="" alt="Gallery" class="max-w-full max-h-[85vh] object-contain rounded-lg">
+  </div>
+
+  <!-- ===================== ULASAN ===================== -->
+  <section id="ulasan" class="bg-dark py-24 md:py-32 relative grid-bg overflow-hidden">
+    <div class="absolute top-0 right-0 w-80 h-80 bg-brand/5 rounded-full blur-3xl"></div>
+
+    <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-[0.3em] text-brand">Ulasan Pelanggan</span>
+        <h2 class="text-4xl md:text-5xl font-bold tracking-tight mt-4">
+          Apa Kata<br>
+          <span class="text-neutral-500">Mereka?</span>
+        </h2>
+        <!-- Rating summary -->
+        <div class="inline-flex items-center gap-4 mt-8 px-6 py-4 bg-white/5 border border-white/10 rounded-full">
+          <div class="flex gap-0.5">
+            <iconify-icon icon="mdi:star" class="text-yellow-400 text-lg"></iconify-icon>
+            <iconify-icon icon="mdi:star" class="text-yellow-400 text-lg"></iconify-icon>
+            <iconify-icon icon="mdi:star" class="text-yellow-400 text-lg"></iconify-icon>
+            <iconify-icon icon="mdi:star" class="text-yellow-400 text-lg"></iconify-icon>
+            <iconify-icon icon="mdi:star" class="text-yellow-400 text-lg"></iconify-icon>
+          </div>
+          <span class="text-2xl font-bold text-white">5.0</span>
+          <span class="text-sm text-neutral-400">dari 1.416 ulasan</span>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Review 1 -->
+        <div class="review-card group p-8 bg-[#151515] border border-white/5 rounded-lg hover:border-brand/30 transition-all duration-500 hover:-translate-y-1">
+          <div class="flex items-center gap-0.5 mb-4">
+            <iconify-icon icon="mdi:star" class="text-yellow-400"></iconify-icon>
+            <iconify-icon icon="mdi:star" class="text-yellow-400"></iconify-icon>
+            <iconify-icon icon="mdi:star" class="text-yellow-400"></iconify-icon>
+            <iconify-icon icon="mdi:star" class="text-yellow-400"></iconify-icon>
+            <iconify-icon icon="mdi:star" class="text-yellow-400"></iconify-icon>
+          </div>
+          <iconify-icon icon="mdi:format-quote-open" class="review-quote text-3xl text-neutral-700 group-hover:text-brand transition-colors duration-500 mb-4 block"></iconify-icon>
+          <p class="text-sm text-neutral-300 leading-relaxed mb-6">
+            Produknya lengkap dengan banyak pilihan, harga terjangkau, pelayanan ramah, dan totalitas. Ruang tunggunya nyaman, AC adem, ada TV kabel, Wi-Fi gratis dan makanan ringan. Musala juga tersedia! ✨
+          </p>
+          <div class="flex items-center gap-3 pt-4 border-t border-white/5">
+            <div class="w-10 h-10 bg-brand/20 rounded-full flex items-center justify-center">
+              <span class="text-sm font-bold text-brand">SA</span>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-white">Sandy Adisutiyono</p>
+              <p class="text-xs text-neutral-500">Local Guide · 599 ulasan</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="review-card group p-8 bg-[#151515] border border-white/5 rounded-lg hover:border-brand/30 transition-all duration-500 hover:-translate-y-1">
+          <div class="flex items-center gap-0.5 mb-4">
+            <iconify-icon icon="mdi:star" class="text-yellow-400"></iconify-icon>
+            <iconify-icon icon="mdi:star" class="text-yellow-400"></iconify-icon>
+            <iconify-icon icon="mdi:star" class="text-yellow-400"></iconify-icon>
+            <iconify-icon icon="mdi:star" class="text-yellow-400"></iconify-icon>
+            <iconify-icon icon="mdi:star" class="text-yellow-400"></iconify-icon>
+          </div>
+          <iconify-icon icon="mdi:format-quote-open" class="review-quote text-3xl text-neutral-700 group-hover:text-brand transition-colors duration-500 mb-4 block"></iconify-icon>
+          <p class="text-sm text-neutral-300 leading-relaxed mb-6">
+            Bengkel accessories yang recommended, pelayanan ramah, tempat buat nunggu yang nyaman, anak seneng sampe betah ga mau pulang. Bagi yang mau upgrade mobil full accessories, bisa kesini barangnya bagus. Dijamin mobil jadi lebih keren!
+          </p>
+          <div class="flex items-center gap-3 pt-4 border-t border-white/5">
+            <div class="w-10 h-10 bg-brand/20 rounded-full flex items-center justify-center">
+              <span class="text-sm font-bold text-brand">AD</span>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-white">Agus Dwi Saputro</p>
+              <p class="text-xs text-neutral-500">Local Guide · 21 ulasan</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="review-card group p-8 bg-[#151515] border border-white/5 rounded-lg hover:border-brand/30 transition-all duration-500 hover:-translate-y-1">
+          <div class="flex items-center gap-0.5 mb-4">
+            <iconify-icon icon="mdi:star" class="text-yellow-400"></iconify-icon>
+            <iconify-icon icon="mdi:star" class="text-yellow-400"></iconify-icon>
+            <iconify-icon icon="mdi:star" class="text-yellow-400"></iconify-icon>
+            <iconify-icon icon="mdi:star" class="text-yellow-400"></iconify-icon>
+            <iconify-icon icon="mdi:star" class="text-yellow-400"></iconify-icon>
+          </div>
+          <iconify-icon icon="mdi:format-quote-open" class="review-quote text-3xl text-neutral-700 group-hover:text-brand transition-colors duration-500 mb-4 block"></iconify-icon>
+          <p class="text-sm text-neutral-300 leading-relaxed mb-6">
+            Servicenya luar biasa baik, mulai dari service call sampai pada pelayanan lapangannya. Ruangannya bersih, wangi, dan estetik. Memiliki ruangan tunggu yang cozy dan dilengkapi oleh sarana ibadah yang bersih dan nyaman.
+          </p>
+          <div class="flex items-center gap-3 pt-4 border-t border-white/5">
+            <div class="w-10 h-10 bg-brand/20 rounded-full flex items-center justify-center">
+              <span class="text-sm font-bold text-brand">IZ</span>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-white">Irtadho Z Falah</p>
+              <p class="text-xs text-neutral-500">Local Guide · 15 ulasan</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Highlight Reviews -->
+      <div class="mt-12 grid md:grid-cols-3 gap-6">
+        <div class="p-5 bg-brand/5 border border-brand/10 rounded-lg">
+          <iconify-icon icon="mdi:format-quote-close" class="text-brand text-xl mb-2"></iconify-icon>
+          <p class="text-sm text-neutral-300 italic">"Pelayanan bagus, barang sesuai standart, plug and play, ruang tunggu dingin"</p>
+        </div>
+        <div class="p-5 bg-brand/5 border border-brand/10 rounded-lg">
+          <iconify-icon icon="mdi:format-quote-close" class="text-brand text-xl mb-2"></iconify-icon>
+          <p class="text-sm text-neutral-300 italic">"Mantab deh pasang accesories dll di otoproject, auto cakep mobil nya🥰"</p>
+        </div>
+        <div class="p-5 bg-brand/5 border border-brand/10 rounded-lg">
+          <iconify-icon icon="mdi:format-quote-close" class="text-brand text-xl mb-2"></iconify-icon>
+          <p class="text-sm text-neutral-300 italic">"Di lantai 3 ada ruang tunggu yg lengkap dengan toilet, mushola dan Snack+kopi."</p>
+        </div>
+      </div>
+
+      <!-- CTA Review -->
+      <div class="text-center mt-12">
+        <a href="https://search.google.com/local/writereview?placeid=ChIJh2YrF5XxaS4RaqQ9Ni3MMR8" target="_blank"
+           class="inline-flex items-center gap-2 px-6 py-3 border border-white/20 text-white text-xs font-bold uppercase tracking-widest rounded-sm hover:bg-white hover:text-dark transition-all duration-300">
+          <iconify-icon icon="mdi:pencil" class="text-sm"></iconify-icon>
+          Tulis Ulasan
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA BANNER ===================== -->
+  <section class="relative bg-brand py-20 overflow-hidden">
+    <div class="absolute inset-0 noise-overlay opacity-10"></div>
+    <div class="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23000%22%20fill-opacity%3D%220.1%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')] opacity-20"></div>
+
+    <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10 text-center">
+      <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-white">Siap Upgrade Mobil Anda?</h2>
+      <p class="text-lg text-white/80 font-light mt-4 max-w-2xl mx-auto">Konsultasikan kebutuhan aksesori mobil Anda sekarang. Tim kami siap membantu dengan pelayanan terbaik.</p>
+      <div class="flex flex-wrap justify-center gap-4 mt-8">
+        <a href="https://wa.me/6281112531327?text=Halo%20Otoproject%20Garage%2C%20saya%20ingin%20konsultasi%20aksesori%20mobil" target="_blank"
+           class="inline-flex items-center gap-3 px-8 py-4 bg-white text-brand text-sm font-bold uppercase tracking-widest rounded-sm hover:bg-dark hover:text-white transition-all duration-300">
+          <iconify-icon icon="mdi:whatsapp" class="text-lg"></iconify-icon>
+          WhatsApp Sekarang
+        </a>
+        <a href="tel:081112531327"
+           class="inline-flex items-center gap-3 px-8 py-4 border-2 border-white text-white text-sm font-bold uppercase tracking-widest rounded-sm hover:bg-white hover:text-brand transition-all duration-300">
+          <iconify-icon icon="mdi:phone" class="text-lg"></iconify-icon>
+          0811-1253-1327
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== LOKASI ===================== -->
+  <section id="lokasi" class="bg-[#0A0A0A] py-24 md:py-32 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Map -->
+        <div class="relative rounded-lg overflow-hidden border border-white/10 h-[50vh]">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.2!2d106.9907!3d-6.2382!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e698c5085555555%3A0x1234567890abcdef!2sOtoproject%20Garage%20Bekasi!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
+            class="w-full h-full border-0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+          <!-- Overlay badge -->
+          <div class="absolute top-4 left-4 bg-dark/90 backdrop-blur-md px-4 py-2 rounded-lg border border-white/10">
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span class="text-xs font-medium text-white">Buka Sekarang</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info -->
+        <div class="space-y-8">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-[0.3em] text-brand">Lokasi</span>
+            <h2 class="text-4xl md:text-5xl font-bold tracking-tight mt-4">
+              Temukan<br>
+              <span class="text-neutral-500">Kami</span>
+            </h2>
+          </div>
+
+          <div class="space-y-6">
+            <!-- Address -->
+            <div class="flex items-start gap-4 group">
+              <div class="w-12 h-12 bg-brand/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-brand/20 transition-colors duration-300">
+                <iconify-icon icon="mdi:map-marker" class="text-brand text-xl"></iconify-icon>
+              </div>
+              <div>
+                <h4 class="text-sm font-semibold text-white mb-1">Alamat</h4>
+                <p class="text-sm text-neutral-400 leading-relaxed">Grand Kota Bintang, Jl. KH. Noer Ali No.19 Blok D, RT.004/RW.002, Jakasampurna, Kec. Bekasi Bar., Kota Bks, Jawa Barat 17145</p>
+              </div>
+            </div>
+
+            <!-- Phone -->
+            <div class="flex items-start gap-4 group">
+              <div class="w-12 h-12 bg-brand/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-brand/20 transition-colors duration-300">
+                <iconify-icon icon="mdi:phone" class="text-brand text-xl"></iconify-icon>
+              </div>
+              <div>
+                <h4 class="text-sm font-semibold text-white mb-1">Telepon / WhatsApp</h4>
+                <a href="tel:081112531327" class="text-sm text-neutral-400 hover:text-brand transition-colors duration-300">0811-1253-1327</a>
+              </div>
+            </div>
+
+            <!-- Hours -->
+            <div class="flex items-start gap-4 group">
+              <div class="w-12 h-12 bg-brand/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-brand/20 transition-colors duration-300">
+                <iconify-icon icon="mdi:clock-outline" class="text-brand text-xl"></iconify-icon>
+              </div>
+              <div>
+                <h4 class="text-sm font-semibold text-white mb-1">Jam Operasional</h4>
+                <div class="space-y-1">
+                  <div class="flex justify-between gap-8 text-sm">
+                    <span class="text-neutral-400">Senin - Sabtu</span>
+                    <span class="text-white font-medium">09.30 - 18.00</span>
+                  </div>
+                  <div class="flex justify-between gap-8 text-sm">
+                    <span class="text-neutral-400">Minggu</span>
+                    <span class="text-white font-medium">09.30 - 17.00</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Plus Code -->
+            <div class="flex items-start gap-4 group">
+              <div class="w-12 h-12 bg-brand/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-brand/20 transition-colors duration-300">
+                <iconify-icon icon="mdi:crosshairs-gps" class="text-brand text-xl"></iconify-icon>
+              </div>
+              <div>
+                <h4 class="text-sm font-semibold text-white mb-1">Plus Code</h4>
+                <p class="text-sm text-neutral-400">QX34+CV Jakasampurna, Kota Bks, Jawa Barat</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Direction Button -->
+          <div class="flex flex-wrap gap-4">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=QX34%2BCV+Jakasampurna+Kota+Bks+Jawa+Barat" target="_blank"
+               class="inline-flex items-center gap-2 px-6 py-3 bg-brand text-white text-xs font-bold uppercase tracking-widest rounded-sm hover:bg-white hover:text-dark transition-all duration-300">
+              <iconify-icon icon="mdi:directions" class="text-base"></iconify-icon>
+              Petunjuk Arah
+            </a>
+            <a href="https://wa.me/6281112531327" target="_blank"
+               class="inline-flex items-center gap-2 px-6 py-3 border border-white/20 text-white text-xs font-bold uppercase tracking-widest rounded-sm hover:bg-white/5 transition-all duration-300">
+              <iconify-icon icon="mdi:whatsapp" class="text-base"></iconify-icon>
+              Chat WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="bg-dark border-t border-white/5 py-16">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+      <div class="grid md:grid-cols-4 gap-12">
+        <!-- Brand -->
+        <div class="md:col-span-2 space-y-6">
+          <a href="#hero" class="flex items-center gap-3 group">
+            <div class="w-10 h-10 bg-brand rounded-lg flex items-center justify-center group-hover:rotate-12 transition-transform duration-500">
+              <iconify-icon icon="mdi:car-wrench" class="text-white text-xl"></iconify-icon>
+            </div>
+            <div>
+              <span class="text-white font-bold text-lg tracking-tight leading-none">OTOPROJECT</span>
+              <span class="block text-[10px] font-medium tracking-[0.25em] text-neutral-400 uppercase">Garage Bekasi</span>
+            </div>
+          </a>
+          <p class="text-sm text-neutral-500 leading-relaxed max-w-sm">
+            Bengkel aksesori mobil terpercaya di Bekasi. Produk lengkap, pemasangan rapih & cepat, ruang tunggu premium. Rating 5.0 dari 1.416 ulasan di Google.
+          </p>
+          <div class="flex gap-3">
+            <a href="https://instagram.com/otoprojectofficial" target="_blank" class="w-10 h-10 border border-white/10 rounded-lg flex items-center justify-center text-neutral-500 hover:text-white hover:border-brand/50 transition-all duration-300">
+              <iconify-icon icon="mdi:instagram" class="text-lg"></iconify-icon>
+            </a>
+            <a href="https://facebook.com/otoprojectofficial" target="_blank" class="w-10 h-10 border border-white/10 rounded-lg flex items-center justify-center text-neutral-500 hover:text-white hover:border-brand/50 transition-all duration-300">
+              <iconify-icon icon="mdi:facebook" class="text-lg"></iconify-icon>
+            </a>
+            <a href="https://tiktok.com/@otoprojectofficial" target="_blank" class="w-10 h-10 border border-white/10 rounded-lg flex items-center justify-center text-neutral-500 hover:text-white hover:border-brand/50 transition-all duration-300">
+              <iconify-icon icon="ic:baseline-tiktok" class="text-lg"></iconify-icon>
+            </a>
+            <a href="https://youtube.com/@otoprojectofficial" target="_blank" class="w-10 h-10 border border-white/10 rounded-lg flex items-center justify-center text-neutral-500 hover:text-white hover:border-brand/50 transition-all duration-300">
+              <iconify-icon icon="mdi:youtube" class="text-lg"></iconify-icon>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-6">Menu</h4>
+          <div class="space-y-3">
+            <a href="#tentang" class="block text-sm text-neutral-500 hover:text-white transition-colors duration-300">Tentang Kami</a>
+            <a href="#layanan" class="block text-sm text-neutral-500 hover:text-white transition-colors duration-300">Layanan</a>
+            <a href="#fasilitas" class="block text-sm text-neutral-500 hover:text-white transition-colors duration-300">Fasilitas</a>
+            <a href="#galeri" class="block text-sm text-neutral-500 hover:text-white transition-colors duration-300">Galeri</a>
+            <a href="#ulasan" class="block text-sm text-neutral-500 hover:text-white transition-colors duration-300">Ulasan</a>
+            <a href="#lokasi" class="block text-sm text-neutral-500 hover:text-white transition-colors duration-300">Lokasi</a>
+          </div>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-6">Kontak</h4>
+          <div class="space-y-3">
+            <a href="tel:081112531327" class="flex items-center gap-2 text-sm text-neutral-500 hover:text-white transition-colors duration-300">
+              <iconify-icon icon="mdi:phone" class="text-brand"></iconify-icon>
+              0811-1253-1327
+            </a>
+            <a href="https://wa.me/6281112531327" target="_blank" class="flex items-center gap-2 text-sm text-neutral-500 hover:text-white transition-colors duration-300">
+              <iconify-icon icon="mdi:whatsapp" class="text-brand"></iconify-icon>
+              WhatsApp
+            </a>
+            <a href="https://desty.page/otoprojectofficial/garage" target="_blank" class="flex items-center gap-2 text-sm text-neutral-500 hover:text-white transition-colors duration-300">
+              <iconify-icon icon="mdi:web" class="text-brand"></iconify-icon>
+              desty.page
+            </a>
+            <div class="flex items-start gap-2 text-sm text-neutral-500">
+              <iconify-icon icon="mdi:map-marker" class="text-brand mt-0.5"></iconify-icon>
+              <span>Jl. KH. Noer Ali No.19 Blok D, Bekasi Bar.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-xs text-neutral-600">© 2025 Otoproject Garage Bekasi. All rights reserved.</p>
+        <a href="#hero" class="flex items-center gap-2 text-xs text-neutral-500 hover:text-brand transition-colors duration-300">
+          Kembali ke atas
+          <iconify-icon icon="mdi:arrow-up" class="text-sm"></iconify-icon>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== FLOATING WhatsApp BUTTON ===================== -->
+  <a href="https://wa.me/6281112531327?text=Halo%20Otoproject%20Garage%2C%20saya%20ingin%20konsultasi%20aksesori%20mobil" target="_blank"
+     class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 hover:scale-110 transition-all duration-300 pulse-glow" style="--tw-shadow-color: rgba(34,197,94,0.3);">
+    <iconify-icon icon="mdi:whatsapp" class="text-white text-3xl"></iconify-icon>
+  </a>
+
+  <!-- ===================== TOAST ===================== -->
+  <div id="toast" class="toast bg-dark border border-brand/30 rounded-lg flex items-center gap-3">
+    <div class="w-8 h-8 bg-brand/20 rounded-full flex items-center justify-center">
+      <iconify-icon icon="mdi:check" class="text-brand"></iconify-icon>
+    </div>
+    <span id="toastMsg" class="text-sm text-white"></span>
+  </div>
+
+  <!-- ===================== SCRIPTS ===================== -->
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('bg-dark/90', 'backdrop-blur-xl', 'shadow-lg');
+        navbar.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+      } else {
+        navbar.classList.remove('bg-dark/90', 'backdrop-blur-xl', 'shadow-lg');
+        navbar.style.borderBottom = 'none';
+      }
+    });
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuIcon = document.getElementById('menuIcon');
+    let menuOpen = false;
+
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileMenu.classList.toggle('hidden');
+      menuIcon.setAttribute('icon', menuOpen ? 'mdi:close' : 'mdi:menu');
+    });
+
+    // Close mobile menu on link click
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuOpen = false;
+        menuIcon.setAttribute('icon', 'mdi:menu');
+      });
+    });
+
+    // Scroll fade-up animation (Intersection Observer)
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-up');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Observe elements that should animate on scroll
+    // Fallback: if IntersectionObserver fails, keep content visible (avoid blank page)
+    const animateEls = document.querySelectorAll('section > div > div, .service-card, .review-card, .gallery-item');
+    if ('IntersectionObserver' in window && animateEls.length > 0) {
+      animateEls.forEach(el => {
+        el.style.opacity = '0';
+        observer.observe(el);
+      });
+    }
+
+    // Lightbox
+    function openLightbox(el) {
+      const img = el.querySelector('img');
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightboxImg');
+      lightboxImg.src = img.src;
+      lightbox.classList.remove('hidden');
+      lightbox.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      lightbox.classList.add('hidden');
+      lightbox.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    // Close lightbox with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Toast notification
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+      toastMsg.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Re-trigger fade-up for hero section (already visible on load)
+    setTimeout(() => {
+      document.querySelectorAll('#hero .fade-up').forEach(el => {
+        el.style.opacity = '';
+      });
+    }, 100);
+  </script>
+</body>
+</html>
